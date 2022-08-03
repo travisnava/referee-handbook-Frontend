@@ -161,5 +161,5 @@ class ApiClient {
 }
 
 
-export default new ApiClient("https://refereeshandbook.herokuapp.com")
+export default new ApiClient("https://refhandbook.herokuapp.com")
 
