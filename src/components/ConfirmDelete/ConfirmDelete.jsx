@@ -39,16 +39,13 @@ export default function ConfirmDelete( props ) {
         
 
       setError(null)
-
       if(confirmText.confirmMessage === (`${props.course.email}/${props.course.course_title}`)) {
-
+          
           const { data, error } = await apiClient.deleteCourse(course.sport_name, course.courseId)
 
           handleFetchNewData();
 
-          if (data) {
-            handleClose();
-          }
+          handleClose();
       } else {
           setError("Please input the appropriate text or hit cancel to return")
       }
