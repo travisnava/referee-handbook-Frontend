@@ -94,11 +94,72 @@ class ApiClient {
         return await this.request({endpoint: `home/${sportName}/${teamId}`, method: `POST`, data: team})
     }
 
+    async getTeams(sportName) {
+        return await this.request({endpoint: `sports/${sportName}/teams`, method: `GET`})
+    }
+
+    async getRecentGame(sportName){
+        return await this.request({endpoint: `sports/${sportName}/recentGame`, method: `GET`})
+    }
+
+    async getNews(sportName){
+        return await this.request({endpoint: `sports/${sportName}/news`, method: `GET`})
+    }
+
+    async getTeamDetail(sportName, teamId){
+        return await this.request({endpoint: `sports/${sportName}/${teamId}`, method: `GET`})
+    }
+    async listFollowedTeamByUser(sportName, teamId) {
+        return await this.request({endpoint: `home/${sportName}/${teamId}`, method: `GET`})
+    }
+    
+    async unfollowTeam(sportName, teamId) {
+        return await this.request({endpoint: `home/${sportName}/${teamId}`, method: `DELETE`})
+    }
+
+    async getTeamStats(sportName, teamId){
+        return await this.request({endpoint: `sports/${sportName}/${teamId}/stats`, method: `GET`})
+    }
+
+    async getTeamGames(sportName, teamId){
+        return await this.request({endpoint: `sports/${sportName}/${teamId}/games`, method: `GET`})
+    }
 
 
+    async recoverAccount(email) {
+        return await this.request({endpoint: `auth/recover`, method: `POST`, data: { email }})
+    }
 
+    async resetPassword({token, newPassword}) {
+        return await this.request({endpoint: `auth/password-reset?token=${token}`, method: `POST`, data: { newPassword }})
+    }
+
+
+    async deleteCourse(sportName, courseId) {
+        return await this.request({endpoint: `learning/${sportName}/userCreated/${courseId}`, method: `DELETE`})
+    }
+    
+    async editCourse(sportName, courseId, course) {
+        return await this.request({endpoint: `learning/${sportName}/userCreated/${courseId}`, method: `PUT`, data: course})
+    }
+
+
+    async fetchRatingForCourseByUser(sportName, courseId) {
+        return await this.request({endpoint: `learning/${sportName}/userCreated/${courseId}/user`, method: `GET`})
+    }
+
+
+    async createRatingForCourse(rating, sportName, courseId) {
+        return await this.request({endpoint: `learning/${sportName}/userCreated/${courseId}/ratings`, method: `POST`, data: rating})
+    }
+
+    async updateRatingForCourse(rating, sportName, courseId) {
+        return await this.request({endpoint: `learning/${sportName}/userCreated/${courseId}/ratings`, method: `PUT`, data: rating})
+    }
 
 
 }
 
+
 export default new ApiClient("https://handbookpodsync.herokuapp.com")
+

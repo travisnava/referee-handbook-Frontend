@@ -1,0 +1,18 @@
+.not-found {
+    height: 70vh;
+    width: 100%;
+    background-color: #363232;
+    color: whitesmoke;
+}
+
+
+.error-message-not-found {
+
+    
+    text-align: center;
+}
+
+.error-404-title {
+    padding-top: 30vh;
+    font-size: 8ch;
+}

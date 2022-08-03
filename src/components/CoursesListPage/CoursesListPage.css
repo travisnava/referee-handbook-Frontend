@@ -189,9 +189,9 @@
 
 .user-created-profile-picture {
 
-    width: 1.5vw;
+    width: 35px;
     margin-right: 2.5px;
-    height: 3%;
+    height: 35px;
     border-radius: 50%;
 }
 
@@ -212,4 +212,11 @@
 
 .user-course-redirect {
     text-decoration: none;
+}
+
+
+.user-course-ratings-container {
+    position: absolute;
+    margin: 1%;
+    right: 0;
 }

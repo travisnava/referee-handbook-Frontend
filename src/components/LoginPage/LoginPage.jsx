@@ -20,7 +20,7 @@ import { useLoginForm } from '../../hooks/useLoginForm'
 export default function LoginPage({ message }) {
 
 
-  const { userLoginForm, error, handleOnInputChange, handleOnSubmitLogin } = useLoginForm()    
+  const { userLoginForm, error, handleOnInputChange, handleOnSubmitLogin, isProcessing } = useLoginForm()    
 
 
 
@@ -74,17 +74,20 @@ export default function LoginPage({ message }) {
               autoComplete="current-password"
               inputProps={{ maxLength: 250 }}
               />
+
           </div>
           </Box>
           <div className="submit-login-btn-container">
-            <Button className="submit-login-btn"  onClick={handleOnSubmitLogin} variant="contained" size="large" endIcon={<SendIcon/>}  shrink="false" sx={{ color: 'black', backgroundColor: 'white', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >LOGIN</Button>
+            <Button className="submit-login-btn"  onClick={handleOnSubmitLogin} variant="contained" size="large" endIcon={<SendIcon/>}  shrink="false" sx={{ color: 'black', backgroundColor: 'white', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >{isProcessing ? "Loading..." : "LOGIN"}</Button>
             {error? <p className ="login-error">{error}</p>: null}
           </div>
         </div>
 
 
+
         {/* Link tag here to redirect to register page for routes established in App.jsx */}
         <div className="register-redirect">
+          <p className="forgot-password-redirect-text"><Link className="redirect-link2" to = "/recover">Forgot your password? </Link></p>
           <p className="register-redirect-text">Don't have an account? Sign up <Link className="redirect-link" to ="/register">here</Link></p>
         </div>
       </div>

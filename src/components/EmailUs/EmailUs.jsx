@@ -28,13 +28,13 @@ export default function FormDialog() {
   //handlers for form components
   function handleOnInputChange (evt) {
     setSportForm((form) => ({ ...form, [evt.target.name]: evt.target.value }))
-    }
+  }
 
 
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" sx={{ backgroundColor: "#F1D433"}} onClick={handleClickOpen}>
         Wish to add a sport?
       </Button>
       <Dialog open={open} onClose={handleClose}>

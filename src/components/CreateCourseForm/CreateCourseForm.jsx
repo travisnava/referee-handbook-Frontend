@@ -1,7 +1,7 @@
 import React from 'react'
 import './CreateCourseForm.css'
 import { useState } from "react"
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -13,31 +13,47 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import apiClient from '../../services/apiClient';
+import { useLearningContext } from '../../contexts/learning'
 
 import MarkdownModal from '../MarkdownModal/MarkdownModal';
-import MarkdownPreviewModal from '../MarkdownPreviewModal/MarkdownPreviewModal';
+import FullScreenPreview from '../FullScreenPreview/FullScreenPreview';
 
 export default function CreateCourseForm() {
 
+    const { currentlyEditing, setCurrentlyEditing } = useLearningContext();
 
+    let currentSport = JSON.parse(localStorage.getItem("current_course"))
 
     const sportName = useParams();
     
+    const filledCourseForm = {
+        sportName: sportName.sportsName,
+        courseName: currentlyEditing.course_title,
+        coverImageURL: currentlyEditing.course_cover_image_url,
+        shortDescription: currentlyEditing.course_short_description,
+        difficulty: currentlyEditing.difficulty,
+        detailedDescription: currentlyEditing.course_content,
+        tipsAndTricks: currentlyEditing.course_tips_tricks,
+        tutorialVideoURL: currentlyEditing.course_tutorial_video_url
+    }
 
+    
+    const editing = Object.keys(currentlyEditing).length === 0 
 
     //global var
-    let emptyCourseForm = {sportName: sportName.sportsName}
-
+    let startingCourseForm = Object.keys(currentlyEditing).length === 0 ?
+        {sportName: sportName.sportsName} :
+        filledCourseForm
 
     //state variables
-    const [courseForm, setCourseForm] = useState(emptyCourseForm)
-    const [difficulty, setDifficulty] = useState('')
-    const navigate = useNavigate()
+    const [courseForm, setCourseForm] = useState(startingCourseForm)
+    const [isEdit, setIsEdit] = useState(editing) //currently editing the course form? 
+    const [difficulty, setDifficulty] = useState(isEdit ? '' : filledCourseForm.difficulty)
     const [error, setError] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
-    const [previewIsOpen, setPreviewIsOpen] = useState(false)
-    const [tipsIsOpen, setTipsIsOpen] = useState(false)
 
+    
+    const navigate = useNavigate()
 
     //handlers for opening and closing our markdown help modal
     function openModal (event) {
@@ -47,26 +63,6 @@ export default function CreateCourseForm() {
 
     function closeModal (event) {
         setIsOpen(false)
-    }
-
-    //handlers for opening and closing our Long description preview modal
-    function openPreviewModal (event) {
-        event.preventDefault()
-        setPreviewIsOpen(true)
-    }
-
-    function closePreviewModal (event) {
-        setPreviewIsOpen(false)
-    }
-
-    //handlers for opening and closing our Tips and Tricks preview modal
-    function openTipsPreviewModal (event) {
-        event.preventDefault()
-        setTipsIsOpen(true)
-    }
-
-    function closeTipsPreviewModal (event) {
-        setTipsIsOpen(false)
     }
 
 
@@ -80,21 +76,27 @@ export default function CreateCourseForm() {
         setCourseForm((form) => ({ ...form, ["difficulty"]: evt.target.value }))
     }
 
-
-
     //create onsubmit handler to call apiClient and post new user created course 
     const handleOnSubmitCourseForm = async () => {
+
         setError(null)
-        const {data, error} = await apiClient.createUserCourse(courseForm, sportName.sportsName)
+        // if it is an edit, then make the api client update the entry
+
+        const {data, error} = !isEdit ? 
+            await apiClient.editCourse(sportName.sportsName, currentlyEditing.courseId , courseForm) :
+            await apiClient.createUserCourse(courseForm, sportName.sportsName)
+       
+        
+
         if (error) {
           setError(error)
         }
-        if(data){
-            navigate(`/learning/${sportName}`)
-          // navigate to the newly created user course
-          // reset frontend form data
+        if(data || !isEdit){
+            navigate(`/learning/${sportName.sportName}`)
         }
-      }
+
+    }
+    
 
     
 
@@ -108,7 +110,7 @@ export default function CreateCourseForm() {
     autoComplete="off">
         <div className="create-course-form">
             <div className="create-course-title-container">
-                { sportName? <h1 className="create-course-title"><em>Create a New Course for {sportName.sportsName}</em></h1> : null}
+                { sportName? <h1 className="create-course-title"><em>Create a New Course for {currentSport.sport_name}</em></h1> : null}
             </div>
             <div className="create-course-form-container">
                 <div className="input-container">
@@ -142,16 +144,15 @@ export default function CreateCourseForm() {
 
                 {/* Open and close modal buttons */}
                 <div className='open-modals'>
-                    <p className='modal-button' onClick={openModal}><u>Markdown cheat-sheet</u></p>
-                    <p className='modal-button' onClick={openPreviewModal}><u>Preview Markdown</u></p>
+                    <div className='preview-markdown'><FullScreenPreview content={courseForm.detailedDescription}/></div>
+                    <p className='modal-button' onClick={openModal}>Markdown cheat-sheet</p>
                 </div>
                 
                 <div className='main-content-input'>
 
                     {/* render components for modals */}
                     <MarkdownModal open={isOpen} onClose={closeModal}/>
-                    <MarkdownPreviewModal content={courseForm.detailedDescription} open={previewIsOpen} onClose={closePreviewModal} />
-                    
+                   
                     <div className="input-container">
                         <TextField
                         className="input-field"
@@ -213,11 +214,11 @@ export default function CreateCourseForm() {
 
                 {/* Open and close modal buttons */}
                 <div className='open-modals'>
-                    <p className='modal-button' onClick={openTipsPreviewModal}><u>Preview Markdown</u></p>
+                    <div className='preview-markdown'><FullScreenPreview content={courseForm.tipsAndTricks}/></div>
                 </div>
 
                 {/* render components for modals */}
-                <MarkdownPreviewModal content={courseForm.tipsAndTricks} open={tipsIsOpen} onClose={closeTipsPreviewModal} />
+                
 
                 <div className="input-container">
                     <TextField

@@ -45,9 +45,24 @@
     justify-content: space-between;
 }
 
+.follow-success, .unfollow-success {
+    color: lightgreen;
+    
+}
+
 /*----------------------- recent games section  --------------------------- */
 .recent-games-title{
     padding: 1vw;
     font-size: 1.7vw;
     font-weight: 400;
+}
+
+@media (max-width: 700px){
+    .recent-games-title{
+        font-size: 20px;
+    }
+
+    .team-page-title{
+        font-size: 20px;
+    }
 }

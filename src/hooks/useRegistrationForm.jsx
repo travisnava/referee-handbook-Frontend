@@ -21,6 +21,7 @@ export const useRegistrationForm = () => {
   const navigate = useNavigate()
   const [userRegisterForm, setUserRegisterForm ] = useState({})
   const [error, setError] = useState(null)
+  const [isProcessing, setIsProcessing] = useState(null)
 
 
 
@@ -42,8 +43,12 @@ export const useRegistrationForm = () => {
 
 
   const handleOnSubmitRegisterForm = async () => {
+    setIsProcessing(true)
+
     if (userRegisterForm.password != userRegisterForm.confirmPassword){
       setError("Passwords don't match")
+      setIsProcessing(false)
+      return
     }
 
     else {
@@ -58,6 +63,7 @@ export const useRegistrationForm = () => {
         navigate("/learning")
       }
     }
+    setIsProcessing(false)
   }
 
 
@@ -66,6 +72,7 @@ export const useRegistrationForm = () => {
     userRegisterForm,
     error,
     handleOnInputChange,
-    handleOnSubmitRegisterForm
+    handleOnSubmitRegisterForm,
+    isProcessing
   }
 }

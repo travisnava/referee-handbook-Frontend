@@ -7,6 +7,7 @@
     margin: 1vw;
     font-size: 1.2vw;
     border-radius: 20px;
+    transition: all 1s ease;
 }
 
 .teams-card-body{
@@ -18,10 +19,19 @@
     padding-bottom: 2vw;
 }
 
+.team-games-card:hover{
+    background-color: white;
+    color: black;
+    transition: all 1s ease;
+}
+
 /*----------------------- text formatting --------------------------- */
 
 .opponent-logo{
     height: 20vh;
+    width: 20vh;
+    object-fit: contain;
+    
 }
 
 .header-line{
@@ -70,4 +80,21 @@
 }
 
 
+@media (max-width: 700px){
+    .team-games-card{
+        font-size: 20px;
+        width: 60vw;
+        display: flex;
+    }
 
+    .WDL{
+        border-top-right-radius: 0;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        font-size: 30px;
+    }
+
+    .team-page-stats{
+        font-size: 25px;
+    }
+}

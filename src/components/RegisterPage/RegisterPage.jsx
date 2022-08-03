@@ -19,7 +19,7 @@ import { useRegistrationForm } from '../../hooks/useRegistrationForm'
 
 export default function RegisterPage() {
             
-  const { userRegisterForm, error, handleOnInputChange, handleOnSubmitRegisterForm } = useRegistrationForm()                  
+  const { userRegisterForm, error, handleOnInputChange, handleOnSubmitRegisterForm, isProcessing } = useRegistrationForm()                  
 
 
 
@@ -49,8 +49,7 @@ export default function RegisterPage() {
               onChange={handleOnInputChange}
               sx={{backgroundColor : 'white'}}
               variant="filled"
-              inputProps={{ maxLength: 250 }}
-              
+              inputProps={{ maxLength: 250 }} 
               />
           </div>
           <div className="username-input-container">
@@ -153,7 +152,7 @@ export default function RegisterPage() {
                 />
             </div>
             <div className="submit-register-btn-container">
-              <Button className="submit-register-btn" variant="contained" size="large" endIcon={<SendIcon/>}  onClick={handleOnSubmitRegisterForm} shrink="false" sx={{ color: 'black', backgroundColor: 'white', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >REGISTER</Button>
+              <Button className="submit-register-btn" variant="contained" size="large" endIcon={<SendIcon/>}  onClick={handleOnSubmitRegisterForm} shrink="false" sx={{ color: 'black', backgroundColor: 'white', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >{isProcessing ? "Loading..." : "REGISTER"}</Button>
               {error? <p className ="register-error">{error}</p>: null}
             </div>
           <div className="login-redirect">

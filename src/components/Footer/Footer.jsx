@@ -32,6 +32,7 @@ export default function Footer() {
                     <div className="footer-body-bottom">
                         <p className ="footer-body"><a target="_blank" href="https://api-sports.io/"><img id = "api-sports-logo" src="https://pbs.twimg.com/profile_images/1248589572730044423/bdT7f7ig_400x400.jpg"></img></a></p>     
                         <p className ="footer-body"><a target="_blank" href="https://loading.io/"><img id ="loading-io-logo" src="https://images.saasworthy.com/loadingio_7824_logo_1623317995_uydrp.jpg"></img></a></p>
+                        <p className ="footer-body"><a target="_blank" href="https://www.twilio.com/sendgrid/email-api"><img id ="twilio-sendgrid-logo" src="https://d15tnd3q55f8nl.cloudfront.net/static/SG_Twilio_Lockup_Social-56f3cfd2f6b0c62422980170d57fac64.png"></img></a></p>
                     </div>
                 </div>
                 
@@ -45,7 +46,7 @@ export default function Footer() {
                         <a target="_blank" className ="icon-anchor"href="https://www.linkedin.com/school/codepath-org/"><LinkedInIcon sx={{ fontSize: 30 }}/></a>
                     </li>
                     <li className = "icon-item">
-                        <a className ="icon-anchor" href = "mailto: support@codepath.org;?subject=We are surprised you clicked on that button.&body=Say Hi to CodePath for us!" ><EmailIcon sx={{ fontSize: 30 }}/></a>
+                        <a className ="icon-anchor" href = "mailto: referees.handbook.app@gmail.com;?subject=We are surprised you clicked on that button.&body=Hi!" ><EmailIcon sx={{ fontSize: 30 }}/></a>
                     </li>
 
                 </ul>

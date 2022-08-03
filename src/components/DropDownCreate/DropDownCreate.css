@@ -1,4 +1,25 @@
 .drop-down-img {
     width: 3vw;
-    border-radius: 15px;
+    border-radius: 10px;
+    
+}
+
+
+.selected-text {
+    margin: 0;
+    padding: 0;
+    display: inline;
+    font-weight: 700;
+    font-size: 2.5ch;
+}
+
+
+
+.dialog-title {
+    font-size: 3ch;
+}
+
+.sport-text{
+    margin-left: 8%;
+    padding-right: 5%;
 }

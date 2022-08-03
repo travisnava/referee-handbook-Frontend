@@ -23,10 +23,10 @@ export default function NavLinks() {
         <li><NavLink to="/profile" label="profile" className="nav-link" activeClassName="active-link">Profile</NavLink></li>
         {/* Logout button moves slightly up when hovered.. need to make it stay in place like other li elements */}
         {user?.email ? <li className = "logout-li" onClick={handleOnLogout}><NavLink to="/login" className="nav-link" activeClassName="active-link">Logout</NavLink></li> 
-        : <span className ="login-register-li">
+        : <>
             <li><NavLink to="/login" label="Login" className="nav-link" activeClassName="active-link">Login</NavLink></li>
             <li><NavLink to="/register" label="Sign up" className="nav-link" activeClassName="active-link">Sign Up</NavLink></li>
-          </span>}
+          </>}
 
       </ul>
               

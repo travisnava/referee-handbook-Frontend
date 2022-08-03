@@ -23,6 +23,8 @@ import CreateCourseForm from '../CreateCourseForm/CreateCourseForm';
 import UserCreatedCoursePage from '../UserCreatedCoursePage/UserCreatedCoursePage'
 import TeamPage from '../TeamPage/TeamPage';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import Recover from '../Recover/Recover'
+import PasswordReset from '../PasswordReset/PasswordReset';
 
 
 //returns our context providers with our App component nested inside.
@@ -50,6 +52,8 @@ function App() {
             <Route path="/" element={<LandingPage/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/register" element={<RegisterPage/>} />
+            <Route path="/recover" element={<Recover/>} />
+            <Route path="/password-reset" element={<PasswordReset/>} />
             <Route path="/profile" element={<ProtectedRoute element = {<ProfilePage/>}/>} />
             <Route path="/learning" element={<LearningCenterPage/>} />
             <Route path="/learning/:sportsName" element={<CoursesListPage/>} />

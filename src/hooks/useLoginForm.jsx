@@ -21,6 +21,7 @@ export const useLoginForm = () => {
   const navigate = useNavigate()
   const [userLoginForm, setUserLoginForm] = useState({})
   const [error, setError] = useState(null)
+  const [isProcessing, setIsProcessing] = useState(null)
 
 
   useEffect(() => {
@@ -43,15 +44,20 @@ export const useLoginForm = () => {
 
   const handleOnSubmitLogin = async () => {
     setError(null)
+    setIsProcessing(true)
     const {data, error} = await apiClient.loginUser(userLoginForm)
     if (error) {
       setError(error)
+      setIsProcessing(false)
+      return
     }
     if(data?.user){
       setUser(data.user)
       apiClient.setToken(data.token)
+      setIsProcessing(false)
       navigate("/learning")
     }
+    setIsProcessing(false)
   }
   
 
@@ -63,7 +69,8 @@ export const useLoginForm = () => {
     userLoginForm,
     error,
     handleOnInputChange,
-    handleOnSubmitLogin
+    handleOnSubmitLogin,
+    isProcessing
   }
 
 

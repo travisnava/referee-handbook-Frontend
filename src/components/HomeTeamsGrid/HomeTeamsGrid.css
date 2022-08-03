@@ -1,6 +1,6 @@
 .home-teams-grid {
     background-color: #D9d9d9;
-    height: 72vh;
+    height: 100%;
     width: 100%;
 
     display: flex;
@@ -13,7 +13,7 @@
     display: grid;
     grid-template-columns: 30% 30% 30%;
     column-gap: 5%;
-    height: 66vh;
+    height: 80vh;
     overflow: scroll;
     padding-top: 10px;
 }

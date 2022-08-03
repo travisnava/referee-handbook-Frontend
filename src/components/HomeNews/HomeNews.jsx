@@ -15,7 +15,7 @@ function HomeNews() {
         <div className='section-title'><h2 className='title-name'>Latest news in {currentSport}</h2></div>
         {/* if out of api calls, render message */}
         {/* if news is still loading, render loading */}
-        {newsLimit ? <h3>Uh oh! The News API is at its limit. Check out our other pages!</h3> : (loading ? (<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>) : (
+        {newsLimit ? <h3>Uh oh! The News API is at its limit. Check out our other pages!</h3> : ((loading || news == null) ? (<div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>) : (
 
         // for each news article, render a news card
         <div className='news-cards'>       

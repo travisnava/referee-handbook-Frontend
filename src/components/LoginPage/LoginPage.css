@@ -33,9 +33,9 @@ body {
     z-index: 5;
     background-color: #383838;
     width: 500px;
-    height: 500px;
+    height: 550px;
     margin-top: 10%;
-    border-radius: 10%;
+    border-radius: 25px;
 }
 
 
@@ -68,7 +68,7 @@ body {
 
 
 .register-redirect {
-    color: white;
+    color: whitesmoke;
     position: absolute;
     bottom: 0;
     margin-left: 25%;
@@ -82,7 +82,11 @@ body {
     color:#F1D433
 }
 
-
+.redirect-link2 {
+    margin-left: 1%;
+    color:#F1D433;
+    
+}
 
 .email-label, .password-label {
     color: whitesmoke;
@@ -94,3 +98,9 @@ body {
     justify-content: center;
 }
 
+.forgot-password-redirect-text {
+    color: whitesmoke;
+    margin-bottom: 10%;
+    text-align: center;
+
+}

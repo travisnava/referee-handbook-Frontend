@@ -31,3 +31,10 @@
 .home-side-navbar .active{
     background-color: white !important;
 }
+
+@media (max-width: 700px) {
+    .home-side-navbar{
+       
+        
+    }
+  }

@@ -67,3 +67,13 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 700px){
+    .cta h1{
+        font-size: 40px;
+    }
+
+    .landing-btn{
+        top: 60vh;
+    }
+}

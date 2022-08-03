@@ -18,7 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import SendIcon from '@mui/icons-material/Send';
 import Typography from '@mui/material/Typography';
-
+import CreateIcon from '@mui/icons-material/Create';
 
 //This displays the text when the drop down button is clicked
 function SimpleDialog(props) {
@@ -33,18 +33,18 @@ function SimpleDialog(props) {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={handleClose} open={open} >
 
-      <DialogTitle>Choose a sport</DialogTitle>
+      <DialogTitle sx={{ backgroundColor: "#383838", color: "whitesmoke", paddingBottom: "5%", display: "flex", justifyContent: "center" }} >Choose a sport</DialogTitle>
 
       {/* For every sport, renders the option to pick it within the pop up  */}
-      <List sx={{ pt: 0 }}>
+      <List sx={{ pt: 0, width: "100%", textAlign: "center", backgroundColor: "#363232", color: "whitesmoke" }}>
         {props.beginnerCourses.map((sport) => (
-          <ListItem button onClick={() => handleListItemClick(sport.sport_name)} key={sport.sport_name}>
+          <ListItem sx={{paddingTop: "5%"}} button onClick={() => handleListItemClick(sport.sport_name)} key={sport.sport_name}>
             <ListItemAvatar>
               <img className="drop-down-img" src={sport.beginner_cover_image_url} alt={sport.sport_name} />
             </ListItemAvatar>
-            <ListItemText primary={sport.sport_name} />
+            <ListItemText primary={sport.sport_name} className="sport-text" />
           </ListItem>
         ))}
 
@@ -77,6 +77,7 @@ export default function DropDownCreate() {
     setOpen(false);
 
     setSelectedValue(value);
+
   };
 
 
@@ -92,10 +93,10 @@ export default function DropDownCreate() {
   return (
     <div>
       <Typography variant="subtitle1" component="div">
-        Selected: {selectedValue}
+        <h4 className="selected-text">Selected:</h4> <span>{selectedValue}</span>
       </Typography>
       <br />
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen} sx={{ height: "40px", backgroundColor: "#383838"}}>
         Choose a sport
       </Button>
       <SimpleDialog
@@ -104,7 +105,7 @@ export default function DropDownCreate() {
         open={open}
         onClose={handleClose}
       />
-      <Button variant="text" onClick={handleNavigate} endIcon={<SendIcon />}>
+      <Button variant="contained" sx={{height: "40px", backgroundColor: "#F1D433"}} onClick={handleNavigate} endIcon={<CreateIcon  />}>
       </Button>
     </div>
   );

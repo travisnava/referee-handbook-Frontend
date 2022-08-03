@@ -105,18 +105,14 @@
     background-color: #D9D9D9;
     margin: 1%;
     border-radius: 10px;
-    width: 40vw;
+    width: 40%;
     height: fit-content;
     padding-bottom: 25px;
     padding-top: 10px;
 }
 
 
-
-
-
 .user-courses-title-container {
-
     margin: 1%;
 }
 
@@ -126,7 +122,6 @@
     justify-content: center;
     margin: 1%;
     padding-bottom: 25px;
-
 }
 
 
@@ -139,26 +134,29 @@
 
 .thumbnail-container {
     margin: 1%;
-    padding-left: 5px;
-    justify-content: center;
+    
+    display: flex;
+}
+
+.cover-image-category {
+    padding-bottom: 1%;
 }
 
 .course-card-cover-image {
     width: 10vw;
     height: 10vh;
     object-fit: cover;
-    object-position: center center;
     border-radius: 25px;
-
 }
 
 .user-course-card-container {
     display: flex;
+    
     margin: 2%;
     background-color: #363232;
     border-radius: 25px;
     color: whitesmoke;
-    padding-left: 2px;
+
     
 }
 
@@ -167,10 +165,12 @@
     margin: 2%;
 }
 
+
 .course-card-date-category {
-    margin-left: 5%;
     font-size: 13px;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .user-created-course-redirect-link, .followed-team-redirect {
@@ -178,6 +178,15 @@
 }
 .followed-team-redirect {
     color: black;
+}
+
+.delete-course-container {
+    display: flex;
+    position: relative;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    justify-content: right;
+
 }
 
 /* ----------------------------- MY TEAMS SECTION  ---------------------------------------*/
@@ -192,8 +201,9 @@
     margin: 1%;
     border-radius: 10px;
     width: 60vw;
-
-
+    height: fit-content;
+    
+    padding-bottom: 5%;
     padding-top: 10px;
 }
 
@@ -204,7 +214,7 @@
     display: flex;
     justify-content: center;
     margin: 1%;
-    padding-bottom: 25px;
+
 }
 
 .user-teams-title, .user-courses-title, .details-title {
@@ -218,26 +228,42 @@
     justify-content: center;
     font-size: 2.2ch;
     margin-top: 6vh;
-    font-weight: 500;
+    font-weight: 400;
 }
 
+
+
+.user-followed-team-cards {
+
+    align-items: center;
+}
+
+
+
+
 .user-followed-team-card{
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
     margin: 1%;
     width: auto;
-    
-    
+    text-align: center;
+    margin-right: 50px;
 }
 
+
+
+
 .profile-team-logo{
-    width: 10vw;
+    width: auto;
+    height: 100px;
+    margin-right: 10px;
+    border-radius: 10px;
 }
 
 .team-name-container{
     display: flex;
-    margin-left: 1vh;
 }
 
 
@@ -266,5 +292,5 @@
 }
 
 .drop-down h1 {
-    padding-bottom: 3vh;
+    padding-bottom: 2vh;
 }

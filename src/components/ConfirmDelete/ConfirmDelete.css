@@ -1,0 +1,11 @@
+.warning-msg {
+    color: black;
+}
+
+.confirm-error {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 2%;
+}

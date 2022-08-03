@@ -24,9 +24,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import StarIcon from '@mui/icons-material/Star';
 
 function CoursesListPage(props) {
 
+  const { setCurrentlyEditing } = useLearningContext();
 
   //creating useState variables to store list of userCreated courses, so that we can easily render from each page, along with variable for error handling
   const [userCourses, setUserCourses] = useState([])
@@ -127,7 +131,7 @@ function CoursesListPage(props) {
                 </Box>
             </div>
           <div className="create-course-btn-container">
-            <Link className ="create-course-link" to = {`/learning/${currentCourse.sport_name}/create`}><Button className="create-course-btn"  variant="contained" size="large"   shrink="false" sx={{ color: 'black',  height:"6ch", fontSize:"16px", backgroundColor: 'whitesmoke', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >Create a Course</Button></Link>
+            <Link className ="create-course-link" to = {`/learning/${currentCourse.sport_name}/create`}><Button className="create-course-btn"  onClick={() => setCurrentlyEditing({})} variant="contained" size="large"   shrink="false" sx={{ color: 'black',  height:"6ch", fontSize:"16px", backgroundColor: 'whitesmoke', ':hover' :{ bgcolor: 'gray', color: 'white'} }} >Create a Course</Button></Link>
           </div>
         </div> 
         </div>
@@ -139,7 +143,6 @@ function CoursesListPage(props) {
       <div className="user-courses-list">
           {filterByDifficulty[0] ?
           filterByDifficulty.map((course) => {
-
             
             //checking if user has a profile picture, if not use placeholder
             let profilePicture;
@@ -148,8 +151,12 @@ function CoursesListPage(props) {
             return(
               <Link className="user-course-redirect" to={`/learning/${currentCourse.sport_name}/userCreated/${course.courseId}`}>
                 <div className="user-created-course" onClick={() => setCourseHandler(course)}>
+                            <span className ="user-course-ratings-container">
+                                <Stack spacing={1}>
+                                    <Rating name="half-rating" defaultValue={course.rating ? course.rating : 0} precision={0.5} readOnly="true" emptyIcon={<StarIcon style={{ opacity: 1, color: "white" }}   />} />
+                                </Stack>
+                            </span>
                     <div className="user-created-course-img-container">
-                      
                       <img className="user-created-course-img" src={course.course_cover_image_url} onError={e => { e.currentTarget.src = "https://ca.ingrammicro.com/_layouts/images/CSDefaultSite/common/no-image-lg.png"; }}/>
                       <p className="user-created-course-creation-date"><img className="user-created-profile-picture" src = {profilePicture} onError={e => { e.currentTarget.src = profilePicturePlaceholder; }} alt={`Profile Picture for ${course.username}`}></img><em className="user-created-course-username"> {course.username}</em>  |  Created on {Moment(new Date(course.created_at)).format("MMMM Do, YYYY")}</p>
                     </div>
