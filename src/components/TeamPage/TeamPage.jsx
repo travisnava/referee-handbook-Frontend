@@ -155,20 +155,20 @@ function TeamPage() {
       </div>
       {followSuccess && currentlyFollowing ? <p className="follow-success">Successfully followed!</p> : null}
       {unfollowSuccess && !currentlyFollowing ? <p className="unfollow-success">Successfully unfollowed!</p> : null}
-      {limit ? (<h3>Uh oh! The sports API is at its limit. Try refreshing or come back in a minute.</h3>) : (
-      <>
+      
       {team == null ? <h3>Loading team...</h3> : <div className='team-page-header'>
       <img className='team-page-logo' src={team.logo}></img>
       <div className='team-page-title'><h1 className='team-page-name'>{team.name}</h1>
       <h2 className='team-page-league'>{league}</h2></div>
       
       </div>}
-      {stats == null ? <h3>Loading stats...</h3> : <div className='team-page-stats'>
+      {limit ? (<h3>Uh oh! The sports API is at its limit. Try refreshing or come back in a minute.</h3>) : (
+      stats == null ? <h3>Loading stats...</h3> : <><div className='team-page-stats'>
         <p>Home: {stats.played.home} •&nbsp;</p>  
         <p>Away: {stats.played.away} •&nbsp;</p>
         <p>Total: {stats.played.all} •&nbsp;</p>
-        <p>{stats.wins.all.total}W {stats.loses.all.total}L </p>    
-      </div>}
+        <p>{stats.wins.all}W {stats.loses.all}L </p>    
+      </div>
       <TeamGamesGrid />
       </>)}
       

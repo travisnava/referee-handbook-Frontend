@@ -65,7 +65,7 @@ function TeamGamesGrid() {
     <div className='team-games-grid'>
       {loadingTeamGames ? <h3>Loading most recent games...</h3> :
       <>
-        {teamGames.map((item)=> {return <TeamGamesCard team={item}/>})}
+        {teamGames.map((item)=> {return <TeamGamesCard id={item.date} team={item}/>})}
       </>}
     </div>
     </>

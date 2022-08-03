@@ -70,6 +70,7 @@ export const HomeContextProvider = ({ children }) => {
             if(currentSport == "hockey"){
                 delete json.data.json[2]
                 delete json.data.json[7]
+                delete json.data.json[24]
             }
             setTeams(json.data.json)
             
@@ -140,6 +141,7 @@ export const HomeContextProvider = ({ children }) => {
         try{
             setLoadingTeam(true)
             // fetch team information using sportName and teamId
+            setLeague(requestParams[sportName].leagueName)
             let json = await apiClient.getTeamDetail(sportName, teamId)
             if(json.data.limit){
                 setLimit(true)
@@ -161,23 +163,25 @@ export const HomeContextProvider = ({ children }) => {
     try {
             setLoadingStats(true)
             let json = await apiClient.getTeamStats(sportName, teamId)
+            
             if(json.data.limit){
                 setLimit(true)
                 return
               }
             // soccer has a fixtures header unlike the others, change it to games
-            if(sportName === "soccer"){
+            if(sportName === "soccer"){ 
                 json.data.json.games = json.data.json.fixtures
-                delete json.data.json.fixtures
-                // soccer has total instead of all, format the json
-                json.data.json.games.played.all = json.data.json.games.played.all.total
-                delete json.data.json.games.played.total
-                json.data.json.games.wins.all.total = json.data.json.games.wins.total
-                delete json.data.json.games.wins.total
-                json.data.json.games.loses.all.total = json.data.json.games.loses.total
-                delete json.data.json.games.loses.total
+                // // soccer has total instead of all, format the json
+                json.data.json.games.played.all = json.data.json.games.played.total
+                json.data.json.games.wins.all = json.data.json.games.wins.total
+                json.data.json.games.loses.all = json.data.json.games.loses.total
             }
-            setStats(json.data.json.games)
+            else{
+                json.data.json.games.wins.all = json.data.json.games.wins.all.total
+                json.data.json.games.loses.all = json.data.json.games.loses.all.total
+            }
+           
+             setStats(json.data.json.games)
         } catch(error) {
             setError(error)
         }
@@ -197,7 +201,7 @@ export const HomeContextProvider = ({ children }) => {
             // soccer data is formatted differently, have to filter differently
             if(sportName === "soccer"){
                 // filter to find the matches that finished/is in progress
-                let filtered_games = json.data.response.filter((item)=>item.fixture.date < new Date().toISOString())
+                let filtered_games = json.data.json.filter((item)=>item.fixture.date < new Date().toISOString())
                 let selected_games = []
 
                 // select the 3 most recent games

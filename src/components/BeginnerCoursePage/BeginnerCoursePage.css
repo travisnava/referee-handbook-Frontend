@@ -6,8 +6,9 @@
 
 /* ---------------------------------------- Timeline ----------------------------------------  */
 .timeline {
+    padding-top: 5%;
     width: 100%;
-    margin-top: 11.5vh;
+
 }
 
 .timeline iframe{

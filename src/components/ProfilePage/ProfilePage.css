@@ -11,6 +11,7 @@
     width: 100%;
 }
 
+
 .profile-page-header {
     margin: 1%;
     display: block;
@@ -28,6 +29,8 @@
 }
 
 .profile-user-info {
+    display: block;
+    overflow-x: auto;
     text-align: center;
 }
 
@@ -70,6 +73,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10%;
+
 
 }
 
@@ -151,7 +155,7 @@
 
 .user-course-card-container {
     display: flex;
-    
+    overflow-x: auto;
     margin: 2%;
     background-color: #363232;
     border-radius: 25px;

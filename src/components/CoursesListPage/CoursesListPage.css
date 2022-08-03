@@ -149,9 +149,11 @@
     display: flex;
     border-radius: 10px;
     color: whitesmoke;
-    padding-bottom: 2vh;
+    padding-bottom: 2%;
     position: relative;
 }
+
+
 
 
 .user-created-course-img {
@@ -167,6 +169,7 @@
 
 
 .user-created-course-content {
+    overflow-x: auto;
     margin: 50px;
 
 }
